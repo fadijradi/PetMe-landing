@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetMe — The Ultimate Pet Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Outfit',sans-serif; background:#0D1B2A; color:white; }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:20px 60px; display:flex; align-items:center; background:rgba(13,27,42,0.9); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.05); }
+    .logo { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:600; color:white; text-decoration:none; }
+    .logo span { color:#1BA8A0; }
+    .nav-cta { margin-left:auto; padding:10px 24px; background:#1BA8A0; color:white; border-radius:50px; font-size:14px; font-weight:600; text-decoration:none; }
+
+    .hero { min-height:100vh; display:flex; align-items:center; padding:120px 60px 80px; position:relative; overflow:hidden; }
+    .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse at 70% 40%, rgba(27,168,160,0.2) 0%, transparent 70%); }
+    .hero-content { position:relative; z-index:2; max-width:650px; }
+    .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(27,168,160,0.12); border:1px solid rgba(27,168,160,0.2); border-radius:50px; padding:6px 16px; font-size:12px; font-weight:600; color:#1BA8A0; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:32px; }
+    .hero-title { font-family:'Cormorant Garamond',serif; font-size:80px; font-weight:300; line-height:1.05; margin-bottom:28px; }
+    .hero-title em { font-style:italic; color:#C9A84C; }
+    .hero-sub { font-size:18px; color:rgba(255,255,255,0.55); line-height:1.7; margin-bottom:48px; max-width:520px; }
+    .hero-btns { display:flex; gap:16px; }
+    .btn-primary { padding:16px 36px; background:linear-gradient(135deg,#1BA8A0,#14857f); color:white; border:none; border-radius:50px; font-size:16px; font-weight:600; cursor:pointer; font-family:'Outfit',sans-serif; }
+    .btn-secondary { padding:16px 36px; background:transparent; color:rgba(255,255,255,0.7); border:1.5px solid rgba(255,255,255,0.15); border-radius:50px; font-size:16px; font-weight:500; cursor:pointer; font-family:'Outfit',sans-serif; }
+
+    .stats { display:flex; gap:48px; padding:40px 60px; background:rgba(255,255,255,0.03); border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06); }
+    .stat { text-align:center; }
+    .stat-val { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:600; color:#1BA8A0; }
+    .stat-label { font-size:13px; color:rgba(255,255,255,0.4); margin-top:4px; }
+
+    .features { padding:100px 60px; background:#F5F7FA; }
+    .section-label { font-size:11px; font-weight:700; color:#1BA8A0; letter-spacing:3px; text-transform:uppercase; margin-bottom:16px; }
+    .section-title { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; color:#0D1B2A; margin-bottom:16px; }
+    .section-title em { font-style:italic; color:#1BA8A0; }
+    .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:60px; }
+    .feature-card { background:white; border-radius:24px; padding:36px; border:1px solid rgba(0,0,0,0.06); }
+    .feature-icon { font-size:32px; margin-bottom:20px; }
+    .feature-title { font-size:19px; font-weight:600; color:#0D1B2A; margin-bottom:12px; }
+    .feature-desc { font-size:14px; color:#666; line-height:1.7; }
+
+    .markets { padding:100px 60px; background:#0D1B2A; }
+    .markets-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:60px; }
+    .market-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:28px; }
+    .market-flag { font-size:36px; margin-bottom:12px; }
+    .market-name { font-size:18px; font-weight:700; color:white; }
+    .market-stat { font-size:13px; color:rgba(255,255,255,0.4); margin-top:6px; }
+
+    .cta { padding:100px 60px; text-align:center; background:#0D1B2A; position:relative; overflow:hidden; }
+    .cta-glow { position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:600px; height:400px; background:radial-gradient(ellipse,rgba(27,168,160,0.2) 0%,transparent 70%); }
+    .cta-title { font-family:'Cormorant Garamond',serif; font-size:64px; font-weight:300; color:white; margin-bottom:20px; position:relative; z-index:1; }
+    .cta-title em { font-style:italic; color:#C9A84C; }
+    .cta-sub { font-size:18px; color:rgba(255,255,255,0.4); margin-bottom:48px; position:relative; z-index:1; }
+    .app-badges { display:flex; gap:16px; justify-content:center; position:relative; z-index:1; }
+    .app-badge { display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:14px 24px; cursor:pointer; }
+    .ab-icon { font-size:28px; }
+    .ab-sub { font-size:10px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; }
+    .ab-name { font-size:16px; font-weight:600; color:white; }
+
+    footer { background:#060E1A; padding:40px 60px; text-align:center; border-top:1px solid rgba(255,255,255,0.04); }
+    .footer-logo { font-family:'Cormorant Garamond',serif; font-size:24px; color:white; margin-bottom:12px; }
+    .footer-logo span { color:#1BA8A0; }
+    .footer-copy { font-size:13px; color:rgba(255,255,255,0.2); }
+
+    @media(max-width:768px) {
+      nav { padding:16px 24px; }
+      .hero { padding:100px 24px 60px; }
+      .hero-title { font-size:48px; }
+      .stats { padding:30px 24px; gap:24px; flex-wrap:wrap; }
+      .features { padding:60px 24px; }
+      .features-grid { grid-template-columns:1fr; }
+      .markets { padding:60px 24px; }
+      .markets-grid { grid-template-columns:1fr 1fr; }
+      .cta { padding:60px 24px; }
+      .cta-title { font-size:40px; }
+      .app-badges { flex-direction:column; align-items:center; }
+      footer { padding:30px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="#">Pet<span>Me</span></a>
+    <a class="nav-cta" href="#">Download App</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🐾 Now live in Bahrain, Lebanon & Saudi Arabia</div>
+      <h1 class="hero-title">Your pet deserves<br/><em>extraordinary</em><br/>care.</h1>
+      <p class="hero-sub">PetMe connects pet owners with vets, services, and community — health records, instant bookings, emergency chat, and adoption, all in one beautiful app.</p>
+      <div class="hero-btns">
+        <button class="btn-primary">🐾 Download Free</button>
+        <button class="btn-secondary">Learn More →</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-val">12k+</div><div class="stat-label">Pet Owners</div></div>
+    <div class="stat"><div class="stat-val">284</div><div class="stat-label">Verified Vets</div></div>
+    <div class="stat"><div class="stat-val">4.9★</div><div class="stat-label">App Rating</div></div>
+    <div class="stat"><div class="stat-val">312</div><div class="stat-label">Pets Adopted</div></div>
+  </div>
+
+  <section class="features">
+    <div class="section-label">Everything You Need</div>
+    <h2 class="section-title">Built for <em>pet lovers</em>,<br/>designed for peace of mind.</h2>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">🩺</div><div class="feature-title">Digital Health Hub</div><div class="feature-desc">Complete medical history, vaccination records, and health schedules for every pet — all in one secure place.</div></div>
+      <div class="feature-card"><div class="feature-icon">📅</div><div class="feature-title">Instant Vet Booking</div><div class="feature-desc">Find and book appointments with verified vets near you in under 60 seconds. Real-time availability.</div></div>
+      <div class="feature-card"><div class="feature-icon">🐾</div><div class="feature-title">Adopt-a-Pet</div><div class="feature-desc">A privacy-first adoption platform connecting pet lovers. Swipe, connect, and give a pet their forever home.</div></div>
+      <div class="feature-card"><div class="feature-icon">🆘</div><div class="feature-title">Emergency Chat</div><div class="feature-desc">Reach your vet instantly with a live emergency chat. Your vet sees your pet's full history before they respond.</div></div>
+      <div class="feature-card"><div class="feature-icon">🏨</div><div class="feature-title">Pet-Friendly Places</div><div class="feature-desc">A curated directory of hotels, cafés, parks, and restaurants that welcome your pets across the region.</div></div>
+      <div class="feature-card"><div class="feature-icon">💛</div><div class="feature-title">Loyalty Program</div><div class="feature-desc">Earn points on every booking and unlock rewards. Silver, Gold, and Platinum tiers with exclusive perks.</div></div>
+    </div>
+  </section>
+
+  <section class="markets">
+    <div class="section-label">Our Markets</div>
+    <h2 class="section-title" style="color:white;">Growing across <em style="color:#C9A84C;">the region</em></h2>
+    <div class="markets-grid">
+      <div class="market-card"><div class="market-flag">🇧🇭</div><div class="market-name">Bahrain</div><div class="market-stat">5,241 users • 67 vets</div></div>
+      <div class="market-card"><div class="market-flag">🇱🇧</div><div class="market-name">Lebanon</div><div class="market-stat">3,794 users • 89 vets</div></div>
+      <div class="market-card"><div class="market-flag">🇸🇦</div><div class="market-name">Saudi Arabia</div><div class="market-stat">3,812 users • 128 vets</div></div>
+      <div class="market-card"><div class="market-flag">🇦🇪</div><div class="market-name">UAE</div><div class="market-stat">Coming Q3 2026</div></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-glow"></div>
+    <h2 class="cta-title">Ready to give your pet<br/>the care they <em>deserve</em>?</h2>
+    <p class="cta-sub">Join 12,000+ pet owners across the region. Free forever.</p>
+    <div class="app-badges">
+      <div class="app-badge"><div class="ab-icon">🍎</div><div><div class="ab-sub">Download on the</div><div class="ab-name">App Store</div></div></div>
+      <div class="app-badge"><div class="ab-icon">▶</div><div><div class="ab-sub">Get it on</div><div class="ab-name">Google Play</div></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Pet<span>Me</span></div>
+    <div class="footer-copy">© 2026 PetMe. All rights reserved. Built with ❤️ for pets everywhere.</div>
+  </footer>
+
+</body>
+</html>
